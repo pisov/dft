@@ -1,4 +1,4 @@
-program test
+program heaviside 
 implicit none
       include "fftw3.f"
 
@@ -43,4 +43,4 @@ implicit none
 
       call dfftw_destroy_plan(plan)
 
-      end
+end program heaviside
