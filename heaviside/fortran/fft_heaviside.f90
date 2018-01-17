@@ -7,7 +7,7 @@ implicit none
 
       integer*8 plan, iplan
 
-      double complex inVec, outVec, dimension(N) :: inVec, outVec
+      double complex, dimension(N) :: inVec, outVec
       double precision :: timeDomainSum, freqDomainSum
       double precision :: pi, x, delta, fi, t0
 
@@ -19,13 +19,13 @@ implicit none
       do i = 1, n
          x = (i-1) * delta
          if (x <= 0.5d0) then
-           in(i) = cmplx(1.d0, 0.d0)
+           inVec(i) = cmplx(1.d0, 0.d0)
          else
-           in(i) = cmplx(0.d0, 0.d0)
+           inVec(i) = cmplx(0.d0, 0.d0)
          end if
       enddo
 
-      call dfftw_plan_dft_1d(plan, n, inVec, outVec, FFT_FORWARD, FFTW_ESTIMATE)
+      call dfftw_plan_dft_1d(plan, n, inVec, outVec, FFTW_FORWARD, FFTW_ESTIMATE)
 
       call dfftw_execute(plan)
 
