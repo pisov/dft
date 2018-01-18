@@ -35,15 +35,15 @@ implicit none
       xmin =  0.d0
       xmax =  1.d0
       L = xmax - xmin
-      delta = L / (n+1)
+      delta = L / (n + 1)
 
       call DFFTW_PLAN_R2R_1D(plan,   n, fReal,   fFurier,  FFTW_RODFT00, FFTW_ESTIMATE)
       call DFFTW_PLAN_R2R_1D(iplan,  n, uFurier,   uReal,  FFTW_RODFT00, FFTW_ESTIMATE)
 
-      do i=1,n
+      do i = 1, n
          x = xmin + i * delta
          fReal(i) = f(x)
-         sReal(i) = x * (x-1) * exp(x)
+         sReal(i) = x * (1 - x) * exp(x)
       enddo
 
       call dfftw_execute(plan)
