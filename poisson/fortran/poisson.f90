@@ -71,5 +71,5 @@ implicit none
       call dfftw_destroy_plan(plan)
       call dfftw_destroy_plan(iplan)
 
-      end
+end program poisson
 
